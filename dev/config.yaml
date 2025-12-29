@@ -1,0 +1,65 @@
+globals:
+  project_id: golden-keel-479411-a0
+  region: us-central1
+
+modules:
+  vms:
+    enabled: true
+    data:
+      vm-1:
+        machine_type: e2-medium
+        zone: us-central1-a
+        image: debian-cloud/debian-12
+      vm-2:
+        machine_type: e2-medium
+        zone: us-central1-a
+        image: debian-cloud/debian-12
+      vm-3:
+        machine_type: e2-medium
+        zone: us-central1-a
+        image: debian-cloud/debian-12
+
+      vm-4:
+        machine_type: e2-medium
+        zone: us-central1-a
+        image: debian-cloud/debian-12
+
+  buckets:
+    forced_destroy: false
+    enabled: false
+    data:
+      logs-bucket:
+        location: US
+        storage_class: STANDARD
+        versioning: true
+        delete_after_days: 30
+        iam_role: roles/storage.objectViewer
+        iam_member: serviceAccount:devops-sa@golden-keel-479411-a0.iam.gserviceaccount.com
+
+  migs:
+    enabled: false
+    data:
+      web-mig:
+        region: us-central1
+        zones:
+        - us-central1-a
+        - us-central1-b
+
+        machine_type: e2-medium
+        image: debian-cloud/debian-12
+
+        network: default
+        subnetwork: default
+
+        autoscaling:
+          min_replicas: 2
+          max_replicas: 6
+          cpu_target: 0.6
+
+        health_check:
+          port: 80
+          request_path: "/"
+
+        load_balancer:
+          type: external-http
+          port: 80
