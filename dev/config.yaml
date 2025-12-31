@@ -25,7 +25,7 @@ modules:
         image: debian-cloud/debian-12
 
   buckets:
-    forced_destroy: true
+    forced_destroy: false
     enabled: true
     data:
       logs-bucket:
@@ -35,6 +35,10 @@ modules:
         delete_after_days: 30
         iam_role: roles/storage.objectViewer
         iam_member: serviceAccount:devops-sa@golden-keel-479411-a0.iam.gserviceaccount.com
+        labels:
+          env: prod
+          owner: platform
+          service: payments
 
   migs:
     enabled: false

@@ -8,6 +8,7 @@ variable "buckets" {
     delete_after_days = number
     iam_role          = string
     iam_member        = string
+    labels = map(string)
     # forced_destroy = bool
   }))
 }
