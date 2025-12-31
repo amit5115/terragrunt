@@ -4,7 +4,7 @@ globals:
 
 modules:
   vms:
-    enabled: true
+    enabled: false
     data:
       vm-1:
         machine_type: e2-medium
@@ -25,8 +25,8 @@ modules:
         image: debian-cloud/debian-12
 
   buckets:
-    forced_destroy: false
-    enabled: false
+    forced_destroy: true
+    enabled: true
     data:
       logs-bucket:
         location: US
@@ -63,3 +63,25 @@ modules:
         load_balancer:
           type: external-http
           port: 80
+
+  sql_instances:
+    enabled: true
+    data:
+      app-db:
+        name: prod-db
+        database_version: POSTGRES_15
+        region: us-central1
+
+        tier: db-custom-2-8192
+        disk_size: 100
+        disk_type: PD_SSD
+        availability_type: REGIONAL
+
+        deletion_protection: true
+        ipv4_enabled: false
+        backup_enabled: true
+
+        labels:
+          env: prod
+          owner: platform
+          service: payments

@@ -5,7 +5,7 @@ resource "google_storage_bucket" "this" {
   for_each = var.buckets
   # One bucket per map key
 
-  name     = "amit-843493u439u422-${each.key}"
+  name     = "amit-843493u43ssss-${each.key}"
   # Enforces naming convention
   # Prevents random bucket names
 
