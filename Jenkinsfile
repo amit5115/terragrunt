@@ -30,9 +30,7 @@ pipeline {
 
     stage('Terragrunt Init') {
       steps {
-        dir("terragrunt/${params.ENV}") {
           sh 'terragrunt run-all init'
-        }
       }
     }
 
@@ -41,10 +39,8 @@ pipeline {
         expression { params.TG_ACTION == 'plan' }
       }
       steps {
-        dir("terragrunt/${params.ENV}") {
           sh 'terragrunt run-all plan'
         }
-      }
     }
 
     stage('Terragrunt Apply') {
@@ -52,10 +48,8 @@ pipeline {
         expression { params.TG_ACTION == 'apply' }
       }
       steps {
-        dir("terragrunt/${params.ENV}") {
           sh 'terragrunt run-all apply --terragrunt-non-interactive'
         }
-      }
     }
 
     stage('Terragrunt Destroy') {
@@ -63,10 +57,9 @@ pipeline {
         expression { params.TG_ACTION == 'destroy' }
       }
       steps {
-        dir("terragrunt/${params.ENV}") {
           sh 'terragrunt run-all destroy --terragrunt-non-interactive'
         }
-      }
+      
     }
   }
 }
