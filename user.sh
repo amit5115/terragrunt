@@ -4,7 +4,7 @@
 # SAFETY CHECK
 # =========================
 if [ "$EUID" -ne 0 ]; then
-  echo "❌ Please run as root or with sudo"
+  echo "Please run as root or with sudo"
   exit 1
 fi
 
@@ -22,10 +22,10 @@ read -p "Enter permission (e.g. 750): " PERM
 # CREATE GROUP
 # =========================
 if getent group "$GROUPNAME" >/dev/null; then
-  echo "ℹ️ Group '$GROUPNAME' already exists"
+  echo "Group '$GROUPNAME' already exists"
 else
   groupadd "$GROUPNAME"
-  echo "✅ Group '$GROUPNAME' created"
+  echo "Group '$GROUPNAME' created"
 fi
 
 # =========================
@@ -35,14 +35,14 @@ if id "$USERNAME" >/dev/null 2>&1; then
   echo "ℹ️ User '$USERNAME' already exists"
 else
   useradd -m -g "$GROUPNAME" "$USERNAME"
-  echo "✅ User '$USERNAME' created"
+  echo "User '$USERNAME' created"
 fi
 
 # =========================
 # ADD USER TO GROUP
 # =========================
 usermod -aG "$GROUPNAME" "$USERNAME"
-echo "✅ User '$USERNAME' added to group '$GROUPNAME'"
+echo "User '$USERNAME' added to group '$GROUPNAME'"
 
 # =========================
 # DIRECTORY SETUP
@@ -51,9 +51,9 @@ mkdir -p "$DIR"
 chown "$USERNAME:$GROUPNAME" "$DIR"
 chmod "$PERM" "$DIR"
 
-echo "✅ Directory '$DIR' created"
-echo "✅ Ownership set to $USERNAME:$GROUPNAME"
-echo "✅ Permission set to $PERM"
+echo "Directory '$DIR' created"
+echo "Ownership set to $USERNAME:$GROUPNAME"
+echo "Permission set to $PERM"
 
 # =========================
 # VALIDATION
@@ -64,4 +64,4 @@ id "$USERNAME"
 ls -ld "$DIR"
 
 echo
-echo "🎉 POC COMPLETED SUCCESSFULLY"
+echo "POC COMPLETED SUCCESSFULLY"
