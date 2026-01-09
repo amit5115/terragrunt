@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Linux Hacker Monitor</title>
+<meta http-equiv="refresh" content="5">
+
+<style>
+body {
+  background:#000;
+  color:#00ff9c;
+  font-family: monospace;
+  margin:0;
+  text-shadow:0 0 5px #00ff9c66;
+}
+header {
+  text-align:center;
+  padding:20px;
+  font-size:26px;
+  border-bottom:1px solid #00ff9c44;
+}
+.container {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+  gap:20px;
+  padding:20px;
+}
+.card {
+  background:#020617;
+  border:1px solid #00ff9c44;
+  border-radius:10px;
+  padding:18px;
+}
+.card h2 {
+  border-bottom:1px dashed #00ff9c44;
+  padding-bottom:6px;
+}
+.kv {
+  display:flex;
+  justify-content:space-between;
+  margin:6px 0;
+}
+.progress {
+  background:#00110a;
+  border-radius:10px;
+  height:14px;
+  overflow:hidden;
+}
+.bar {
+  height:100%;
+  font-size:11px;
+  padding-right:6px;
+  text-align:right;
+  animation:pulse 1.5s infinite;
+}
+.cpu {background:#00ff9c;}
+.mem {background:#00ffaa;}
+.disk {background:#facc15;}
+
+.badge {
+  padding:4px 12px;
+  border-radius:999px;
+  border:1px solid;
+}
+.ok {color:#00ff9c;border-color:#00ff9c;}
+.bad {color:#ff4d4d;border-color:#ff4d4d;}
+
+.highlight {color:#ff4d4d;font-weight:bold;}
+
+table {width:100%;border-collapse:collapse;}
+td,th {padding:6px;}
+
+@keyframes pulse {
+  0%{opacity:.6}50%{opacity:1}100%{opacity:.6}
+}
+</style>
+</head>
+
+<body>
+
+<header>☠️ LINUX SYSTEM HACKER DASHBOARD ☠️</header>
+
+<div class="container">
+
+<div class="card">
+<h2>HOST / OS</h2>
+<div class="kv"><span>HOST</span><span>amitk3001-mac</span></div>
+<div class="kv"><span>OS</span><span></span></div>
+<div class="kv"><span>KERNEL</span><span>24.6.0</span></div>
+<div class="kv"><span>ARCH</span><span>arm64</span></div>
+<div class="kv"><span>UPTIME</span><span></span></div>
+<div class="kv"><span>CORES</span><span></span></div>
+</div>
+
+<div class="card">
+<h2>CPU PER CORE</h2>
+<table>
+  <tr>
+    <td>CPU</td>
+    <td>
+      <div class='progress'>
+        <div class='bar cpu' style='width:0%'>0%</div>
+      </div>
+    </td>
+  </tr></table>
+<p class="highlight">HOT CORE →  (0%)</p>
+</div>
+
+<div class="card">
+<h2>MEMORY</h2>
+<div class="kv"><span>TOTAL</span><span> MB</span></div>
+<div class="kv"><span>USED</span><span> MB</span></div>
+<div class="kv"><span>FREE</span><span> MB</span></div>
+<div class="progress"><div class="bar mem" style="width:%">%</div></div>
+</div>
+
+<div class="card">
+<h2>SYSTEM INTEL</h2>
+<div class="kv"><span>LOAD AVG</span><span></span></div>
+
+<h3>TOP PROCESSES</h3>
+<table>
+<tr><th>PID</th><th>CMD</th><th>CPU%</th><th>MEM%</th></tr>
+
+  <tr>
+    <td></td>
+    <td></td>
+    <td>%</td>
+    <td>%</td>
+  </tr>
+</table>
+
+<h3>NETWORK (MB)</h3>
+<div class="kv"><span>RX</span><span>0.00</span></div>
+<div class="kv"><span>TX</span><span>0.00</span></div>
+</div>
+
+<div class="card">
+<h2>DISK</h2>
+<table>
+<tr><th>MOUNT</th><th>SIZE</th><th>USED</th><th>FREE</th><th>%</th></tr>
+
+  <tr>
+    <td>427k</td>
+    <td>460Gi</td>
+    <td>17Gi</td>
+    <td>282Gi</td>
+    <td>
+      <div class='progress'>
+        <div class='bar disk' style='width:6%'>6%</div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>766</td>
+    <td>221Ki</td>
+    <td>221Ki</td>
+    <td>0Bi</td>
+    <td>
+      <div class='progress'>
+        <div class='bar disk' style='width:100%'>100%</div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>460Gi</td>
+    <td>20Ki</td>
+    <td>282Gi</td>
+    <td>
+      <div class='progress'>
+        <div class='bar disk' style='width:1%'>1%</div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>1.9k</td>
+    <td>460Gi</td>
+    <td>14Gi</td>
+    <td>282Gi</td>
+    <td>
+      <div class='progress'>
+        <div class='bar disk' style='width:5%'>5%</div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>177</td>
+    <td>460Gi</td>
+    <td>358Mi</td>
+    <td>282Gi</td>
+    <td>
+      <div class='progress'>
+        <div class='bar disk' style='width:1%'>1%</div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>500Mi</td>
+    <td>6.0Mi</td>
+    <td>480Mi</td>
+    <td>
+      <div class='progress'>
+        <div class='bar disk' style='width:2%'>2%</div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>28</td>
+    <td>500Mi</td>
+    <td>5.6Mi</td>
+    <td>480Mi</td>
+    <td>
+      <div class='progress'>
+        <div class='bar disk' style='width:2%'>2%</div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>90</td>
+    <td>500Mi</td>
+    <td>3.8Mi</td>
+    <td>480Mi</td>
+    <td>
+      <div class='progress'>
+        <div class='bar disk' style='width:1%'>1%</div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>1.8M</td>
+    <td>460Gi</td>
+    <td>145Gi</td>
+    <td>282Gi</td>
+    <td>
+      <div class='progress'>
+        <div class='bar disk' style='width:34%'>34%</div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>100%</td>
+    <td>auto_home</td>
+    <td>0Bi</td>
+    <td>0Bi</td>
+    <td>
+      <div class='progress'>
+        <div class='bar disk' style='width:0Bi%'>0Bi%</div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>100%</td>
+    <td>-fstab</td>
+    <td>0Bi</td>
+    <td>0Bi</td>
+    <td>
+      <div class='progress'>
+        <div class='bar disk' style='width:0Bi%'>0Bi%</div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>63</td>
+    <td>5.0Gi</td>
+    <td>1.9Gi</td>
+    <td>3.0Gi</td>
+    <td>
+      <div class='progress'>
+        <div class='bar disk' style='width:40%'>40%</div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>314Gi</td>
+    <td>Studio</td>
+    <td>Code.app</td>
+    <td>460Gi</td>
+    <td>
+      <div class='progress'>
+        <div class='bar disk' style='width:128Gi%'>128Gi%</div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>453k</td>
+    <td>460Gi</td>
+    <td>17Gi</td>
+    <td>282Gi</td>
+    <td>
+      <div class='progress'>
+        <div class='bar disk' style='width:6%'>6%</div>
+      </div>
+    </td>
+  </tr>
+</table>
+<p class="highlight">BOTTLENECK → 766 (100%)</p>
+</div>
+
+<div class="card">
+<h2>SERVICES</h2>
+<div class="kv"><span>nginx</span><span class="badge bad">inactive</span></div>
+<div class="kv"><span>ssh</span><span class="badge bad">inactive</span></div>
+<div class="kv"><span>docker</span><span class="badge bad">inactive</span></div>
+</div>
+
+</div>
+
+<p style="text-align:center;">Last update → Fri Jan  9 21:45:55 IST 2026</p>
+
+</body>
+</html>
